@@ -1,21 +1,19 @@
 import { options } from "./data";
 
 export const setPronoun = ({
-  newLocation,
+  location,
   infoType,
 }: {
-  newLocation: string;
+  location?: string;
   infoType?: string;
 }) => {
-  if (!newLocation) return;
+  if (!location) return;
   switch (infoType) {
     case options[0]:
     case options[1]:
       return " in ";
-      break;
     case options[2]:
       return " of ";
-      break;
     default:
       return " of ";
   }

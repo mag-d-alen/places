@@ -1,30 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MainContext } from "../../context/MainContext";
 import { options } from "../../data";
+import { capitalizeName } from "../../hooks/capitalizeName";
 import { MainContextType } from "../../types";
 import { AttractionCard } from "./AttractionCard";
 import { AttractionCards } from "./AttractionCards";
 import { DetailsModal } from "./DetailsModal";
 import { Header } from "./Header";
-import {
-  AttractionCategory,
-  AttractionName,
-  Button,
-  HomeContainer,
-  InfoContainer,
-  SelectionsContainer,
-} from "./homePage.styled";
+import { HomeContainer, SelectionsContainer } from "./homePage.styled";
 import { MainInfo } from "./MainInfo";
 import { Search } from "./Search";
 import { Select } from "./Select";
 
 export const Home: React.FC = () => {
-  const {
-    location,
-    info,
-    detailedInfo,
-    infoType,
-  } = useContext(MainContext) as MainContextType;
+  const { location, info, detailedInfo, infoType } = useContext(
+    MainContext
+  ) as MainContextType;
 
   const [newLocation, setNewLocation] = useState("");
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -34,17 +25,15 @@ export const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    detailedInfo && infoType == options[1] && setIsDetailModalOpen(true);
+    detailedInfo && infoType === options[1] && setIsDetailModalOpen(true);
   }, [detailedInfo]);
 
-  {
-  }
   return (
     <HomeContainer>
-      <Header newLocation={newLocation} />
+      <Header location={location} />
       <SelectionsContainer>
         <Search setNewLocation={setNewLocation} newLocation={newLocation} />
-        <h1>{location}</h1>
+        <h1>{capitalizeName(location)}</h1>
         {info?.country ? <MainInfo info={info} /> : null}
         {location ? <Select /> : null}
         <AttractionCards />

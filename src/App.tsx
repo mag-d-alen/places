@@ -38,12 +38,7 @@ const App = () => {
   }, [location]);
 
 
-
-
-
-
   const getAttractions = () => {
-    console.log("called");
     getData({
       route: "attractions",
       data: `${info.lon - 0.5}&${info.lon + 0.5}&${info.lat - 0.5}&${
@@ -67,6 +62,8 @@ const App = () => {
       })
       .catch((err) => console.log(err));
   };
+
+
   return (
     <MainContext.Provider
       value={{

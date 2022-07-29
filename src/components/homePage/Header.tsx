@@ -1,20 +1,22 @@
 import React, { useContext, useState } from "react";
 import { MainContext } from "../../context/MainContext";
 import { options } from "../../data";
+import { capitalizeName } from "../../hooks/capitalizeName";
 import { setPronoun } from "../../lib";
 import { HeaderContainer } from "./homePage.styled";
 
-export const Header: React.FC<{ newLocation: string }> = ({ newLocation }) => {
+export const Header: React.FC<{ location: string }> = ({ location }) => {
   const { infoType } = useContext(MainContext);
-
 
   return (
     <HeaderContainer>
-      Welcome to {newLocation}! <br />
+      Welcome
+      {location ? ` to ${capitalizeName(location)}!` : "!"}
+      <br />
       {infoType ? infoType : null}
-      {newLocation ? (
+      {location ? (
         <>
-          {setPronoun({infoType, newLocation})} {newLocation.toLocaleUpperCase()}
+          {setPronoun({ infoType, location })} {location.toLocaleUpperCase()}
         </>
       ) : null}
     </HeaderContainer>

@@ -8,17 +8,15 @@ import {
   AttractionCardContainer,
 } from "./homePage.styled";
 
-export const AttractionCard: React.FC<{ attraction: AttractionType }> = ({
-  attraction,
-}) => {
-  const { getDetailedInfo } = useContext(MainContext);
+export const AttractionCard: React.FC<{
+  attraction: AttractionType;
+  handleClick: (id: string) => void;
+}> = ({ attraction, handleClick }) => {
   return (
-    <AttractionCardContainer
-      key={attraction.xid}
-      onClick={() => getDetailedInfo(attraction.xid)}>
+    <AttractionCardContainer onClick={() => handleClick(attraction.xid)}>
       <AttractionName>{attraction.name}</AttractionName>
       {attraction.kinds.split(",").map((k: string) => (
-        <AttractionCategory>{k}</AttractionCategory>
+        <AttractionCategory key={k}>{k}</AttractionCategory>
       ))}
     </AttractionCardContainer>
   );
