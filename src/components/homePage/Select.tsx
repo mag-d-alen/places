@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { MainContext } from "../../context/MainContext";
 import { options } from "../../data";
-import { MainContextType } from "../../types";
 import { SelectDropdown } from "./homePage.styled";
+import { useSelector, useDispatch } from "react-redux";
+import { setAttractions } from "../../context/attractionsSlice";
+import { useContext } from "react";
+import { MainContext } from "../../context/MainContext";
 
 export const Select = () => {
-  const { setInfoType, getAttractions } = useContext(
-    MainContext
-  ) as MainContextType;
-  const displayInfoType = (info: string) => {
-    setInfoType(info);
-    info == options[1] && getAttractions();
+  const { info } = useContext(MainContext);
+  const dispatch = useDispatch();
+  const displayInfoType = (infoType: string) => {
+    if (infoType !== options[1] || !info) return;
+    dispatch(setAttractions(info));
   };
   return (
     <SelectDropdown onChange={(e) => displayInfoType(e.target.value)}>

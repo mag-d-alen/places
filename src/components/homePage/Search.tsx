@@ -1,23 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { MainContext } from "../../context/MainContext";
-import { MainContextType } from "../../types";
 import { LocationInput, SearchContainer } from "./homePage.styled";
+import { useDispatch } from "react-redux";
+import { setInfo } from "../../context/attractionsSlice";
 
 export const Search: React.FC<{
   newLocation: string;
   setNewLocation: (place: string) => void;
 }> = ({ newLocation, setNewLocation }) => {
-  const { setLocation, setAttractions } = useContext(
-    MainContext
-  ) as MainContextType;
-
-  useEffect(() => {
-    setAttractions([]);
-  }, [newLocation]);
-
+  const { setLocation } = useContext(MainContext);
+  const dispatch = useDispatch();
   const chooseLocation = () => {
-    setLocation(newLocation);
-    setNewLocation("");
+    dispatch(setInfo(newLocation));
   };
 
   return (

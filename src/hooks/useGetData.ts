@@ -1,7 +1,6 @@
 import { uri } from "../data";
 
-export const useGetData = async (params: any) => {
-  if (!location) return;
+export const getData = async (params: any) => {
   const res = await fetch(`${uri}/${params.route}/${params.data}`);
   if (res.status !== 200) {
     throw Error("problem getting data");

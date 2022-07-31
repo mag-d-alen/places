@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MainContext } from "../../context/MainContext";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -6,12 +6,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button } from "./homePage.styled";
+import { getData } from "../../hooks/useGetData";
 
 export const DetailsModal: React.FC<{
+    detailedInfo: any;
   open: boolean;
   closeModal: () => void;
-}> = ({ open, closeModal }) => {
-  const { detailedInfo } = useContext(MainContext);
+}> = ({ open, closeModal, detailedInfo}) => {
+
 
   return (
     <Dialog

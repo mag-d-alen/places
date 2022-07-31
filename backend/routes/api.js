@@ -54,7 +54,7 @@ router.get(
         lat_min,
         lat_max,
       });
-      res.send(attractionsInfo);
+      res.send(attractionsInfo.slice(0, 20));
     } catch (err) {
       res.json(err);
     }
