@@ -14,13 +14,13 @@ export type MainContextType = {
   setDetailedInfo: (id: string) => void;
 };
 export type InfoType = {
-  name: string;
-  country: string;
-  lat: number;
-  lon: number;
-  population: number;
-  timezone: string;
-  status: string;
+  name?: string;
+  country?: string;
+  lat?: number;
+  lon?: number;
+  population?: number;
+  timezone?: string;
+  status?: string;
 };
 export type AttractionType = {
   xid: string;
