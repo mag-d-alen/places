@@ -1,17 +1,16 @@
-import { options } from "../../data";
+import { options } from "../../../data";
 import { SelectDropdown } from "./homePage.styled";
-import { useSelector, useDispatch } from "react-redux";
-import { setAttractions } from "../../context/attractionsSlice";
-import { useContext } from "react";
-import { MainContext } from "../../context/MainContext";
+import { useDispatch } from "react-redux";
+import { setInfoType } from "../../../model/context/mainSlice";
+import { useGetAttractions } from "../../../controller/hooks/useGetAttractions";
 
 export const Select = () => {
-  const { info } = useContext(MainContext);
   const dispatch = useDispatch();
   const displayInfoType = (infoType: string) => {
-    if (infoType !== options[1] || !info) return;
-    dispatch(setAttractions(info));
+    dispatch(setInfoType(infoType));
   };
+  useGetAttractions();
+  
   return (
     <SelectDropdown onChange={(e) => displayInfoType(e.target.value)}>
       <option defaultValue="" disabled>

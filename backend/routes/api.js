@@ -1,15 +1,17 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const axios = require("axios").default;
 const router = require("express").Router();
 
 const placesUri = `https://api.opentripmap.com/0.1/en/places/`;
-const apiKey =
-  "apikey=5ae2e3f221c38a28845f05b6a157983b16f70d1abecfe988e6d2cfe0";
+const mapUri = `https://api.opentripmap.com/0.1/en/tiles/pois/10/10/10.pbf?&apikey=`;
 
+const weatherUri = "https://api.ambeedata.com/weather/latest/by-lat-lng?";
 const fetchPlace = async (placeName) => {
   try {
     const placeData = await axios.get(
-      `${placesUri}geoname?name=${placeName}&${apiKey}`
+      `${placesUri}geoname?name=${placeName}&apikey=${process.env.API_KEY}`
     );
     return placeData.data;
   } catch (error) {
@@ -20,10 +22,8 @@ const fetchPlace = async (placeName) => {
 const fetchAttractions = async ({ lon_min, lon_max, lat_min, lat_max }) => {
   try {
     const attractions = await axios.get(
-      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&kinds=interesting_places&${apiKey}`,
-      {
-        accept: "application/json",
-      }
+      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&limit=20&kinds=interesting_places&apikey=${process.env.API_KEY}`,
+      { accept: "application/json" }
     );
     return attractions.data;
   } catch (error) {
@@ -33,10 +33,36 @@ const fetchAttractions = async ({ lon_min, lon_max, lat_min, lat_max }) => {
 
 const fetchDetails = async (id) => {
   try {
-    const details = await axios.get(`${placesUri}xid/${id}?${apiKey}`, {
-      accept: "application/json",
-    });
+    const details = await axios.get(
+      `${placesUri}xid/${id}?apikey=${process.env.API_KEY}`,
+      {
+        accept: "application/json",
+      }
+    );
     return details.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+const fetchMap = async () => {
+  try {
+    const map = await axios.get(mapUri);
+    return map.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const fetchWeather = async ({ lat, lon }) => {
+  try {
+    const weather = await axios.get(`${weatherUri}lat=${lat}&lng=${lon}`, {
+      headers: {
+        "x-api-key": process.env.WEATHER_API_KEY,
+        "Content-type": "application/json",
+      },
+    });
+    return weather.data;
   } catch (error) {
     console.log(error);
   }
@@ -44,7 +70,6 @@ const fetchDetails = async (id) => {
 
 router.get(
   "/attractions/:lon_min&:lon_max&:lat_min&:lat_max",
-
   async (req, res) => {
     const { lon_min, lon_max, lat_min, lat_max } = req.params;
     try {
@@ -54,7 +79,7 @@ router.get(
         lat_min,
         lat_max,
       });
-      res.send(attractionsInfo.slice(0, 20));
+      res.send(attractionsInfo);
     } catch (err) {
       res.json(err);
     }
@@ -75,6 +100,24 @@ router.get("/details/:id", async (req, res) => {
   try {
     const details = await fetchDetails(id);
     res.send(details);
+  } catch (err) {
+    res.json(err);
+  }
+});
+router.get("/map", async (req, res) => {
+  try {
+    const details = await fetchMap();
+    res.send(map);
+  } catch (err) {
+    console.log(err.data);
+  }
+});
+
+router.get("/weather/:lat&:lon", async (req, res) => {
+  const { lat, lon } = req.params;
+  try {
+    const weather = await fetchWeather({ lat, lon });
+    res.send(weather.data);
   } catch (err) {
     res.json(err);
   }
