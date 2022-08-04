@@ -37,8 +37,12 @@ export const SelectDropdown = styled.select`
 `;
 export const InfoContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 90%;
   flex-direction: row;
   gap: 2rem;
+  justify-content: center;
+  align-items: center;
 `;
 export const AttractionCardsContainer = styled.div`
   display: flex;
@@ -86,4 +90,12 @@ export const Button = styled.div`
     background: darkslategrey;
     color: white;
   }
+`;
+export const WeatherContainer = styled.div`
+  width: 80%;
+`;
+export const WeatherRow = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem;
 `;
