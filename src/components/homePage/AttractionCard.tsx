@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
-import { MainContext } from "../../context/MainContext";
 import { AttractionType } from "../../types";
 import {
+  AttractionCardContainer,
   AttractionName,
   AttractionCategory,
-  Button,
-  AttractionCardContainer,
-} from "./homePage.styled";
+} from "../../view/components/homePage/homePage.styled";
 
 export const AttractionCard: React.FC<{
   attraction: AttractionType;
