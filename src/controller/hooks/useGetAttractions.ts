@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAttractions } from "../../model/context/mainSlice";
 import { options } from "../../data";
@@ -10,7 +10,7 @@ export const useGetAttractions = () => {
   const { infoType, basicInfo } = useSelector((s: any) => s.info);
 
   useEffect(() => {
-    if (!basicInfo?.lon || !basicInfo?.lat || infoType != options[1]) return;
+    if (!basicInfo?.lon || !basicInfo?.lat || infoType !== options[1]) return;
 
     getData({
       route: "attractions",

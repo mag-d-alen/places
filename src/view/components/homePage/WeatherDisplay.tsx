@@ -11,7 +11,7 @@ export const WeatherDisplay: React.FC = () => {
       {weather.temperature ? (
         Object.entries(weather)
           .filter(([key, value]) => {
-            return key != "lng" && key != "lat";
+            return key !== "lng" && key !== "lat";
           })
           .map(([key, value]) => {
             const newKey = key.split(/(?=[A-Z])/);
