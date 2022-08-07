@@ -9,7 +9,7 @@ export const useGetMap = () => {
   const [map, setMap] = useState<any[]>([]);
 
   useEffect(() => {
-    if (infoType != options[2]) return;
+    if (infoType != options[3]) return;
     getData({
       route: "map",
     })

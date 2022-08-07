@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setAttractionDetails } from "../../model/context/mainSlice";
+import { useDispatch } from "react-redux";
 import { getData } from "../../functions/getData";
+import { useEffect, useState } from "react";
 
 export const useGetAttractionDetails = (id: string) => {
-  const dispatch = useDispatch();
-  const details = useSelector((s: any) => s.info.attractionDetails);
-  if (id === details.xid) return;
-  getData({
-    route: "details",
-    data: id,
-  })
-    .then((body) => {
-      dispatch(setAttractionDetails(body));
+  const [attractionDetails, setAttractionDetails] = useState<any>();
+
+  useEffect(() => {
+    getData({
+      route: "details",
+      data: id,
     })
-    .catch((err) => console.log(err));
+      .then((body) => setAttractionDetails(body))
+      .catch((err) => console.log(err));
+  }, [id]);
+  return attractionDetails;
 };

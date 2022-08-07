@@ -4,13 +4,14 @@ import { setAttractions } from "../../model/context/mainSlice";
 import { options } from "../../data";
 import { getCoordinates } from "../../functions/getCoordinates";
 import { getData } from "../../functions/getData";
+import { RootState } from "../../model/context/store";
 
 export const useGetAttractions = () => {
   const dispatch = useDispatch();
   const { infoType, basicInfo } = useSelector((s: any) => s.info);
 
   useEffect(() => {
-    if (!basicInfo?.lon || !basicInfo?.lat || infoType !== options[1]) return;
+    if (!basicInfo?.lon || !basicInfo?.lat || infoType !== options[2]) return;
 
     getData({
       route: "attractions",
@@ -21,5 +22,5 @@ export const useGetAttractions = () => {
         dispatch(setAttractions(body.features));
       })
       .catch((err) => console.log(err));
-  }, [basicInfo?.lon, infoType]);
+  }, [basicInfo?.lon,!basicInfo?.lat, infoType]);
 };

@@ -9,12 +9,12 @@ export const setPronoun = ({
 }) => {
   if (!place) return;
   switch (infoType) {
-    case options[0]:
     case options[1]:
-      return " in ";
     case options[2]:
+      return " in ";
+    case options[3]:
       return " of ";
     default:
-      return " of ";
+      return " in ";
   }
 };

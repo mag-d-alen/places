@@ -12,6 +12,11 @@ export const HeaderContainer = styled.div`
   width: 100%;
   padding: 1rem;
   background-color: aliceblue;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  font-weight: 500;
+  text-align: center;
 `;
 export const SelectionsContainer = styled.div`
   display: flex;

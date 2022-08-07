@@ -9,7 +9,7 @@ export const useGetWeather = () => {
   const { infoType, basicInfo } = useSelector((s: any) => s.info);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!basicInfo || infoType != options[0]) return;
+    if (!basicInfo || infoType != options[1]) return;
     getData({
       route: "weather",
       data: getCoordinates(infoType, basicInfo),

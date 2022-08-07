@@ -1,8 +1,7 @@
 import { LocationInput, SearchContainer } from "./homePage.styled";
 import { useDispatch } from "react-redux";
-import { setPlace } from "../../../model/context/mainSlice";
-import { useState } from "react";
-import { useGetInfo } from "../../../controller/hooks/useGetInfo";
+import {  setPlace } from "../../../model/context/mainSlice";
+import {  useState } from "react";
 
 export const Search: React.FC = () => {
   const [newLocation, setNewLocation] = useState("");
@@ -11,7 +10,6 @@ export const Search: React.FC = () => {
   const handleSetPlace = () => {
     dispatch(setPlace(newLocation));
   };
-  useGetInfo();
 
   return (
     <SearchContainer>

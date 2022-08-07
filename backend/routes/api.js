@@ -1,17 +1,17 @@
-const dotenv = require("dotenv");
-dotenv.config();
-const express = require("express");
 const axios = require("axios").default;
 const router = require("express").Router();
+const API_KEY = "5ae2e3f221c38a28845f05b6a157983b16f70d1abecfe988e6d2cfe0";
+const WEATHER_API_KEY =
+  "98f63b2471e592fcc240699e2719417dec01c3a52b4b804668a5161d252f92a1";
 
 const placesUri = `https://api.opentripmap.com/0.1/en/places/`;
-const mapUri = `https://api.opentripmap.com/0.1/en/tiles/pois/10/10/10.pbf?&apikey=`;
+const mapUri = `https://api.opentripmap.com/0.1/en/tiles/pois/10/10/10.pbf?&apikey=${API_KEY}`;
 
 const weatherUri = "https://api.ambeedata.com/weather/latest/by-lat-lng?";
 const fetchPlace = async (placeName) => {
   try {
     const placeData = await axios.get(
-      `${placesUri}geoname?name=${placeName}&apikey=${process.env.API_KEY}`
+      `${placesUri}geoname?name=${placeName}&apikey=${API_KEY}`
     );
     return placeData.data;
   } catch (error) {
@@ -22,7 +22,7 @@ const fetchPlace = async (placeName) => {
 const fetchAttractions = async ({ lon_min, lon_max, lat_min, lat_max }) => {
   try {
     const attractions = await axios.get(
-      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&limit=20&kinds=interesting_places&apikey=${process.env.API_KEY}`,
+      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&limit=20&kinds=interesting_places&apikey=${API_KEY}`,
       { accept: "application/json" }
     );
     return attractions.data;
@@ -33,18 +33,14 @@ const fetchAttractions = async ({ lon_min, lon_max, lat_min, lat_max }) => {
 
 const fetchDetails = async (id) => {
   try {
-    const details = await axios.get(
-      `${placesUri}xid/${id}?apikey=${process.env.API_KEY}`,
-      {
-        accept: "application/json",
-      }
-    );
+    const details = await axios.get(`${placesUri}xid/${id}?apikey=${API_KEY}`, {
+      accept: "application/json",
+    });
     return details.data;
   } catch (error) {
     console.log(error);
   }
 };
-
 
 const fetchMap = async () => {
   try {
@@ -56,12 +52,15 @@ const fetchMap = async () => {
 };
 const fetchWeather = async ({ lat, lon }) => {
   try {
-    const weather = await axios.get(`${weatherUri}lat=${lat}&lng=${lon}`, {
-      headers: {
-        "x-api-key": process.env.WEATHER_API_KEY,
-        "Content-type": "application/json",
-      },
-    });
+    const weather = await axios.get(
+      `${weatherUri}lat=${lat}&lng=${lon}&units=si`,
+      {
+        headers: {
+          "x-api-key": WEATHER_API_KEY,
+          "Content-type": "application/json",
+        },
+      }
+    );
     return weather.data;
   } catch (error) {
     console.log(error);

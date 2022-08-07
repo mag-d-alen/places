@@ -1,9 +1,4 @@
-export type MainContextType = {
-  feature: string;
-  setFeature: (f: string) => void;
-  infoType: string | undefined;
-  setInfoType: (option: string) => void;
-};
+
 export type InfoType = {
   name?: string;
   country?: string;

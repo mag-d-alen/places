@@ -1,3 +1,4 @@
+import { LinearProgress } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { WeatherType } from "../../../types";
@@ -16,14 +17,14 @@ export const WeatherDisplay: React.FC = () => {
           .map(([key, value]) => {
             const newKey = key.split(/(?=[A-Z])/);
             return (
-              <WeatherRow>
+              <WeatherRow key={key}>
                 {newKey.map((word) => `${word.toUpperCase()} `)}
                 <div>{value}</div>
               </WeatherRow>
             );
           })
       ) : (
-        <div>no data</div>
+        <LinearProgress />
       )}
     </WeatherContainer>
   );

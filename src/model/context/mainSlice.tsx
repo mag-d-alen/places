@@ -6,7 +6,6 @@ const initialState = {
   basicInfo: {},
   attractions: [],
   infoType: "",
-  attractionDetails: {},
   map: {},
   weather: {
     apparentTemperature: 0,
@@ -48,14 +47,11 @@ export const mainSlice = createSlice({
     setAttractions: (state: any, action: PayloadAction<InfoType>) => {
       return { ...state, attractions: action.payload };
     },
-    setAttractionDetails: (state: any, action: PayloadAction<InfoType>) => {
-      return { ...state, attractionDetails: action.payload };
-    },
     setMap: (state: any, action: PayloadAction<InfoType>) => {
       return { ...state, map: action.payload };
     },
     setWeather: (state: any, action: PayloadAction<InfoType>) => {
-      return { ...state, weather: action.payload  };
+      return { ...state, weather: action.payload };
     },
   },
 });
@@ -64,7 +60,6 @@ export const {
   setBasicInfo,
   setInfoType,
   setAttractions,
-  setAttractionDetails,
   setMap,
   setWeather,
 } = mainSlice.actions;

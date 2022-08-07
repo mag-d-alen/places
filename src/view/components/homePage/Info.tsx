@@ -10,9 +10,9 @@ export const Info: React.FC = () => {
   );
   return (
     <InfoContainer>
-      {infoType === options[0] && weather ? <WeatherDisplay /> : null}
-      {infoType === options[1] && attractions ? <AttractionCards /> : null}
-      {infoType === options[2] && map ? <div>map</div> : null}
+      {infoType === options[1] && weather ? <WeatherDisplay /> : null}
+      {infoType === options[2] && attractions ? <AttractionCards /> : null}
+      {infoType === options[3] && map ? <div>map</div> : null}
     </InfoContainer>
   );
 };

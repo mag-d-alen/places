@@ -7,12 +7,14 @@ import { getData } from "../../functions/getData";
 export const useGetInfo = () => {
   const dispatch = useDispatch();
   const place = useSelector((s: any) => s.info.place);
-  const [info, setInfo] = useState<InfoType>({});
+
   useEffect(() => {
-    if (!place) return setInfo({});
-    getData({ route: "place", data: place })
-      .then((body) => dispatch(setBasicInfo(body)))
-      .catch((err) => console.log(err));
+    const getBasicInfo = async () => {
+      if (!place) return dispatch(setBasicInfo({}));
+      getData({ route: "place", data: place })
+        .then((body) => dispatch(setBasicInfo(body)))
+        .catch((err) => console.log(err));
+    };
+    getBasicInfo();
   }, [place]);
-  return info;
 };
