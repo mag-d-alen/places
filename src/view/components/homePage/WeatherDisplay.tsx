@@ -1,6 +1,7 @@
 import { LinearProgress } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { addUnit } from "../../../functions/addUnit";
 import { WeatherType } from "../../../types";
 import { WeatherContainer, WeatherRow } from "./homePage.styled";
 
@@ -12,14 +13,23 @@ export const WeatherDisplay: React.FC = () => {
       {weather.temperature ? (
         Object.entries(weather)
           .filter(([key, value]) => {
-            return key !== "lng" && key !== "lat";
+            return (
+              key !== "lng" &&
+              key !== "lat" &&
+              key !== "time" &&
+              key !== "visiblity" &&
+              key !== "dewPoint" &&
+              key !== "ozone"
+            );
           })
           .map(([key, value]) => {
-            const newKey = key.split(/(?=[A-Z])/);
+            const weatherCategory = key.split(/(?=[A-Z])/);
             return (
               <WeatherRow key={key}>
-                {newKey.map((word) => `${word.toUpperCase()} `)}
-                <div>{value}</div>
+                {weatherCategory.map((word) => `${word.toUpperCase()} `)}
+                <div>
+                  {value} {addUnit(key)}
+                </div>
               </WeatherRow>
             );
           })
