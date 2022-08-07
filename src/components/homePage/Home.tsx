@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MainContext } from "../../context/MainContext";
 import { options } from "../../data";
-import { capitalizeName } from "../../hooks/capitalizeName";
+import { capitalizeName } from "../../functions/capitalizeName";
 import { MainContextType } from "../../types";
 import { AttractionCard } from "./AttractionCard";
 import { AttractionCards } from "./AttractionCards";

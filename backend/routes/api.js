@@ -1,15 +1,16 @@
-require(dotenv).config();
+
 const express = require("express");
 const axios = require("axios").default;
 const router = require("express").Router();
 
+const API_KEY = "5ae2e3f221c38a28845f05b6a157983b16f70d1abecfe988e6d2cfe0"
 const placesUri = `https://api.opentripmap.com/0.1/en/places/`;
 
 
 const fetchPlace = async (placeName) => {
   try {
     const placeData = await axios.get(
-      `${placesUri}geoname?name=${placeName}&apikey=${process.env.API_KEY}`
+      `${placesUri}geoname?name=${placeName}&apikey=${API_KEY}`
     );
     return placeData.data;
   } catch (error) {
@@ -20,7 +21,7 @@ const fetchPlace = async (placeName) => {
 const fetchAttractions = async ({ lon_min, lon_max, lat_min, lat_max }) => {
   try {
     const attractions = await axios.get(
-      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&kinds=interesting_places&apikey=${process.env.API_KEY}`,
+      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&kinds=interesting_places&apikey=${API_KEY}`,
       {
         accept: "application/json",
       }
@@ -30,10 +31,9 @@ const fetchAttractions = async ({ lon_min, lon_max, lat_min, lat_max }) => {
     console.log(error);
   }
 };
-
 const fetchDetails = async (id) => {
   try {
-    const details = await axios.get(`${placesUri}xid/${id}?apikey=${apiKey}`, {
+    const details = await axios.get(`${placesUri}xid/${id}?apikey=${API_KEY}`, {
       accept: "application/json",
     });
     return details.data;

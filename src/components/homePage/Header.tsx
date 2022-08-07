@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MainContext } from "../../context/MainContext";
-import { options } from "../../data";
-import { capitalizeName } from "../../hooks/capitalizeName";
+import { capitalizeName } from "../../functions/capitalizeName";
 import { setPronoun } from "../../lib";
 import { HeaderContainer } from "./homePage.styled";
 
