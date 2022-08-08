@@ -1,11 +1,11 @@
-
+const dotenv = require("dotenv");
+dotenv.config({ path: "backend/routes/.env" });
 const express = require("express");
 const axios = require("axios").default;
 const router = require("express").Router();
+const API_KEY = process.env.API_KEY;
 
-const API_KEY = "5ae2e3f221c38a28845f05b6a157983b16f70d1abecfe988e6d2cfe0"
 const placesUri = `https://api.opentripmap.com/0.1/en/places/`;
-
 
 const fetchPlace = async (placeName) => {
   try {
