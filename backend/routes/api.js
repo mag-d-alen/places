@@ -1,9 +1,9 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: "backend/routes/.env" });
 const axios = require("axios").default;
 const router = require("express").Router();
-const API_KEY = "5ae2e3f221c38a28845f05b6a157983b16f70d1abecfe988e6d2cfe0";
-const WEATHER_API_KEY =
-  "98f63b2471e592fcc240699e2719417dec01c3a52b4b804668a5161d252f92a1";
 
+const { API_KEY, WEATHER_API_KEY } = process.env;
 const placesUri = `https://api.opentripmap.com/0.1/en/places/`;
 const mapUri = `https://api.opentripmap.com/0.1/en/tiles/pois/10/10/10.pbf?&apikey=${API_KEY}`;
 
