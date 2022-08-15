@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllFilters } from "../../../functions/getAllFilters";
 import { setCategoryFilter } from "../../../model/context/mainSlice";
 import { AttractionCategory } from "./AttractionCategory";
-import { AttractionCategoriesListContainer, Button } from "./homePage.styled";
+import { Button } from "../homePage/homePage.styled";
+import { AttractionCategoriesListContainer } from "./attractions.styled";
+import { Typography } from "@mui/material";
 
 export const AttractionsFilters: React.FC<{ attractions: any[] }> = ({
   attractions,
@@ -14,7 +16,7 @@ export const AttractionsFilters: React.FC<{ attractions: any[] }> = ({
   );
   return (
     <>
-      <div>Filter by category</div>
+      <Typography>Filter by category</Typography>
       <AttractionCategoriesListContainer>
         {getAllFilters(attractions).map((k: string) => (
           <AttractionCategory key={k} category={k} />

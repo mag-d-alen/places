@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { AttractionCards } from "./AttractionCards";
+import { AttractionCards } from "../attractions/AttractionCards";
 import { options } from "../../../data";
-import { WeatherDisplay } from "./WeatherDisplay";
+import { WeatherDisplay } from "../weather/WeatherDisplay";
 import { InfoContainer } from "./homePage.styled";
-import { Map } from "./Map";
+import { Map } from "../map/Map";
 
 export const Info: React.FC = () => {
   const { attractions, weather, map, infoType } = useSelector(

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { capitalizeName } from "../../../functions/capitalizeName";
 import { processCategoryName } from "../../../functions/processCategoryName";
 import { setCategoryFilter } from "../../../model/context/mainSlice";
-import { AttractionCategoryContainer } from "./homePage.styled";
+import { AttractionCategoryContainer } from "./attractions.styled";
 
 export const AttractionCategory: React.FC<{ category: string }> = ({
   category,

@@ -1,4 +1,3 @@
-
 export type InfoType = {
   name?: string;
   country?: string;
@@ -18,9 +17,13 @@ export type InitialStateType = {
   place: string;
   basicInfo: any;
   attractions: any;
+  filteredAttractions: any[];
+  infoType: string;
+  limit: number;
+  map: any;
+  weather: WeatherType;
 };
 export type WeatherType = {
-  
   apparentTemperature: number;
   cloudCover: number;
   dewPoint: number;

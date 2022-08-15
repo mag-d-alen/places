@@ -7,6 +7,7 @@ const initialState = {
   attractions: [],
   filteredAttractions: [],
   infoType: "",
+  limit: 3,
   map: {},
   weather: {
     apparentTemperature: 0,
@@ -50,9 +51,12 @@ export const mainSlice = createSlice({
     },
     setCategoryFilter: (state: any, action: PayloadAction<string>) => {
       const filteredAttractions = state.attractions?.filter((a: any) =>
-       a.properties.kinds.includes(action.payload)
+        a.properties.kinds.includes(action.payload)
       );
       return { ...state, filteredAttractions: filteredAttractions };
+    },
+    setLimit: (state: any, action: PayloadAction<undefined>) => {
+      return { ...state, limit: state.limit + 5 };
     },
     setMap: (state: any, action: PayloadAction<InfoType>) => {
       return { ...state, map: action.payload };
@@ -70,5 +74,6 @@ export const {
   setCategoryFilter,
   setMap,
   setWeather,
+  setLimit,
 } = mainSlice.actions;
 export default mainSlice.reducer;

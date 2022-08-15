@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { LinearProgress } from "@mui/material";
 import { RootState } from "../../../model/context/store";
 import { AttractionsList } from "./AttractionsList";
 

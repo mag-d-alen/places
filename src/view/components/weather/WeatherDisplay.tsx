@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { addUnit } from "../../../functions/addUnit";
 import { WeatherType } from "../../../types";
-import { WeatherContainer, WeatherRow } from "./homePage.styled";
+import { WeatherContainer, WeatherRow } from "./weather.styled";
 
 export const WeatherDisplay: React.FC = () => {
   const weather: WeatherType = useSelector((s: any) => s.info.weather);

@@ -5,11 +5,9 @@ import { options } from "../../data";
 import { getCoordinates } from "../../functions/getCoordinates";
 import { getData } from "../../functions/getData";
 
-export const useGetAttractions = (limit: number) => {
+export const useGetAttractions = () => {
   const dispatch = useDispatch();
-  const { infoType, basicInfo } = useSelector((s: any) => s.info);
-
-  useEffect(() => {
+  const { infoType, basicInfo, place, limit } = useSelector((s: any) => s.info);  useEffect(() => {
     if (!basicInfo?.lon || !basicInfo?.lat || infoType !== options[2]) return;
     getData({
       route: "attractions",
@@ -21,5 +19,5 @@ export const useGetAttractions = (limit: number) => {
         dispatch(setAttractions(body.features));
       })
       .catch((err) => console.log(err));
-  }, [basicInfo?.lon, !basicInfo?.lat, infoType]);
+  }, [basicInfo?.lon, !basicInfo?.lat, infoType, place, limit]);
 };

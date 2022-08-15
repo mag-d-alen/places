@@ -3,7 +3,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Button } from "./homePage.styled";
+import { Button } from "../homePage/homePage.styled";
 import { useGetAttractionDetails } from "../../../controller/hooks/useGetAttractionDetails";
 import { LinearProgress } from "@mui/material";
 

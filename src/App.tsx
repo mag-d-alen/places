@@ -1,4 +1,4 @@
-import "./App.css";
+
 import { MainController } from "./controller/MainController";
 import { Home } from "./view/components/homePage/Home";
 

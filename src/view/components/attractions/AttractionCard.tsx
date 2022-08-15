@@ -7,7 +7,7 @@ import {
   AttractionName,
   AttractionCardContainer,
   AttractionCategoriesListContainer,
-} from "./homePage.styled";
+} from "./attractions.styled"
 
 export const AttractionCard: React.FC<{
   attraction: AttractionType;
