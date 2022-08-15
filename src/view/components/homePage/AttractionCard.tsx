@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { capitalizeName } from "../../../functions/capitalizeName";
+import { processCategoryName } from "../../../functions/processCategoryName";
 import { AttractionType } from "../../../types";
 import { DetailsModal } from "./DetailsModal";
 import {
   AttractionName,
-  AttractionCategory,
   AttractionCardContainer,
+  AttractionCategoriesListContainer,
 } from "./homePage.styled";
 
 export const AttractionCard: React.FC<{
@@ -30,10 +32,15 @@ export const AttractionCard: React.FC<{
         />
       ) : null}
       <AttractionCardContainer onClick={() => getDetailedInfo()}>
-        <AttractionName>{attraction.name}</AttractionName>
-        {attraction.kinds.split(",").map((k: string) => (
-          <AttractionCategory key={k}>{k}</AttractionCategory>
-        ))}
+        <AttractionName>{attraction.name}</AttractionName>{" "}
+        <AttractionCategoriesListContainer>
+          {attraction.kinds.split(",").map((k: string) => (
+            <div style={{ marginLeft: "0.4rem", color: "darkblue" }} key={k}>
+              {capitalizeName(processCategoryName(k))}
+              {" * "}
+            </div>
+          ))}
+        </AttractionCategoriesListContainer>
       </AttractionCardContainer>
     </>
   );

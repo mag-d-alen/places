@@ -17,11 +17,7 @@ export const DetailsModal: React.FC<{
     closeModal();
   };
   return (
-    <Dialog
-      open={open}
-      onClose={handleCloseModal}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description">
+    <Dialog open={open} onClose={handleCloseModal}>
       {!detailedInfo ? (
         <LinearProgress />
       ) : (

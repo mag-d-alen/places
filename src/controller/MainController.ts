@@ -5,7 +5,7 @@ import { useGetWeather } from "./hooks/useGetWeather";
 
 export const MainController = () => {
   useGetInfo();
-  useGetAttractions();
+  useGetAttractions(8);
   useGetMap();
   useGetWeather();
   return null;

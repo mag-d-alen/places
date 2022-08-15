@@ -66,25 +66,39 @@ export const AttractionCardContainer = styled.div`
   justify-content: center;
   width: 25rem;
   height: 10rem;
-  padding: 1rem;
-  background-color: aliceblue;
+  padding: 0.5rem;
   overflow: auto;
+  background-color: white;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
   :hover {
-    filter: drop-shadow(0.2rem 0.1rem 0.1rem lightslategrey);
+    filter: drop-shadow(0.3rem 0.3rem 0.2rem rgba(0, 0, 0, 0.5));
   }
 `;
 export const AttractionName = styled.h2`
   font-size: 1.2rem;
 `;
-export const AttractionCategory = styled.div`
+export const AttractionCategoriesListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+export const AttractionCategoryContainer = styled.div`
   display: flex;
   justify-content: center;
   font-size: 0.8rem;
+  padding: 0.3rem;
+  background-color: darkgray;
+  color: white;
+  margin: 0.2rem;
+  border-radius: 0.2rem;
+  :hover {
+    filter: drop-shadow(0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
+  }
 `;
-export const Button = styled.div`
+export const Button = styled.div<{ disabled?: boolean }>`
+  background: ${({ disabled }) => (disabled ? "gray" : "black")};
   margin: 0.3rem;
   display: flex;
-  background: black;
   color: white;
   padding: 0.5rem;
   border-radius: 0.3rem;
@@ -92,8 +106,7 @@ export const Button = styled.div`
   font-size: 0.6rem;
   font-weight: 500;
   :hover {
-    background: darkslategrey;
-    color: white;
+    background: ${({ disabled }) => (disabled ? "gray" : "darkslategrey")};
   }
 `;
 export const WeatherContainer = styled.div`

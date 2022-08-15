@@ -5,6 +5,7 @@ const initialState = {
   place: "",
   basicInfo: {},
   attractions: [],
+  filteredAttractions: [],
   infoType: "",
   map: {},
   weather: {
@@ -47,6 +48,12 @@ export const mainSlice = createSlice({
     setAttractions: (state: any, action: PayloadAction<InfoType>) => {
       return { ...state, attractions: action.payload };
     },
+    setCategoryFilter: (state: any, action: PayloadAction<string>) => {
+      const filteredAttractions = state.attractions?.filter((a: any) =>
+       a.properties.kinds.includes(action.payload)
+      );
+      return { ...state, filteredAttractions: filteredAttractions };
+    },
     setMap: (state: any, action: PayloadAction<InfoType>) => {
       return { ...state, map: action.payload };
     },
@@ -60,6 +67,7 @@ export const {
   setBasicInfo,
   setInfoType,
   setAttractions,
+  setCategoryFilter,
   setMap,
   setWeather,
 } = mainSlice.actions;
