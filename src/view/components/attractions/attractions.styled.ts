@@ -15,7 +15,7 @@ export const AttractionCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 25rem;
+  width: 18rem;
   height: 10rem;
   padding: 0.5rem;
   overflow: auto;
@@ -29,7 +29,7 @@ export const AttractionCardContainer = styled.div`
 export const AttractionName = styled.h2`
   font-size: 1.2rem;
 `;
-export const AttractionCategoriesListContainer = styled.div`
+export const AttractionTags = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
@@ -45,4 +45,12 @@ export const AttractionCategoryContainer = styled.div`
   :hover {
     filter: drop-shadow(0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
   }
+`;
+export const AttractionTag = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  color: slategray;
+  margin: 0 0.2rem;
 `;

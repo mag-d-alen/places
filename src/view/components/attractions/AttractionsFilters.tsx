@@ -4,7 +4,7 @@ import { getAllFilters } from "../../../functions/getAllFilters";
 import { setCategoryFilter } from "../../../model/context/mainSlice";
 import { AttractionCategory } from "./AttractionCategory";
 import { Button } from "../homePage/homePage.styled";
-import { AttractionCategoriesListContainer } from "./attractions.styled";
+import { AttractionTags } from "./attractions.styled";
 import { Typography } from "@mui/material";
 
 export const AttractionsFilters: React.FC<{ attractions: any[] }> = ({
@@ -17,11 +17,11 @@ export const AttractionsFilters: React.FC<{ attractions: any[] }> = ({
   return (
     <>
       <Typography>Filter by category</Typography>
-      <AttractionCategoriesListContainer>
+      <AttractionTags>
         {getAllFilters(attractions).map((k: string) => (
           <AttractionCategory key={k} category={k} />
         ))}
-      </AttractionCategoriesListContainer>
+      </AttractionTags>
       <Button
         disabled={filtersAreNotSet}
         onClick={() => dispatch(setCategoryFilter(""))}>

@@ -6,8 +6,9 @@ import { DetailsModal } from "./DetailsModal";
 import {
   AttractionName,
   AttractionCardContainer,
-  AttractionCategoriesListContainer,
-} from "./attractions.styled"
+  AttractionTag,
+  AttractionTags,
+} from "./attractions.styled";
 
 export const AttractionCard: React.FC<{
   attraction: AttractionType;
@@ -33,14 +34,16 @@ export const AttractionCard: React.FC<{
       ) : null}
       <AttractionCardContainer onClick={() => getDetailedInfo()}>
         <AttractionName>{attraction.name}</AttractionName>{" "}
-        <AttractionCategoriesListContainer>
+        <AttractionTags>
           {attraction.kinds.split(",").map((k: string) => (
-            <div style={{ marginLeft: "0.4rem", color: "darkblue" }} key={k}>
-              {capitalizeName(processCategoryName(k))}
-              {" * "}
-            </div>
+            <>
+              <AttractionTag key={k}>
+                {capitalizeName(processCategoryName(k))}
+              </AttractionTag>
+              <span>&#183;</span>
+            </>
           ))}
-        </AttractionCategoriesListContainer>
+        </AttractionTags>
       </AttractionCardContainer>
     </>
   );

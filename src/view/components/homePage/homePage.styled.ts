@@ -32,8 +32,7 @@ export const HeaderFirstLine = styled.p`
 export const SelectionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
-  padding: 1rem;
+  padding: 2rem 4rem;
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -54,7 +53,7 @@ export const SelectDropdown = styled.select`
 export const InfoContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 90%;
+  width: 100%;
   flex-direction: row;
   gap: 0.5rem;
   justify-content: center;
