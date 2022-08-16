@@ -9,6 +9,7 @@ const initialState = {
   infoType: "",
   limit: 3,
   map: {},
+  filter: "interesting_places",
   weather: {
     apparentTemperature: 0,
     cloudCover: 0,
@@ -47,13 +48,21 @@ export const mainSlice = createSlice({
       return { ...state, infoType: action.payload };
     },
     setAttractions: (state: any, action: PayloadAction<InfoType>) => {
-      return { ...state, attractions: action.payload };
+      return {
+        ...state,
+        attractions: action.payload,
+        filteredAttractions: action.payload,
+      };
     },
     setCategoryFilter: (state: any, action: PayloadAction<string>) => {
       const filteredAttractions = state.attractions?.filter((a: any) =>
         a.properties.kinds.includes(action.payload)
       );
-      return { ...state, filteredAttractions: filteredAttractions };
+      return {
+        ...state,
+        filteredAttractions: filteredAttractions,
+        filter: action.payload,
+      };
     },
     setLimit: (state: any, action: PayloadAction<undefined>) => {
       return { ...state, limit: state.limit + 5 };

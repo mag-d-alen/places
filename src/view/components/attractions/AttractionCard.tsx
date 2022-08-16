@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { capitalizeName } from "../../../functions/capitalizeName";
 import { processCategoryName } from "../../../functions/processCategoryName";
 import { AttractionType } from "../../../types";
@@ -36,12 +36,12 @@ export const AttractionCard: React.FC<{
         <AttractionName>{attraction.name}</AttractionName>{" "}
         <AttractionTags>
           {attraction.kinds.split(",").map((k: string) => (
-            <>
-              <AttractionTag key={k}>
+            <Fragment key={k}>
+              <AttractionTag>
                 {capitalizeName(processCategoryName(k))}
               </AttractionTag>
               <span>&#183;</span>
-            </>
+            </Fragment>
           ))}
         </AttractionTags>
       </AttractionCardContainer>

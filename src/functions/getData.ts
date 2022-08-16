@@ -1,17 +1,23 @@
+import axios from "axios";
 import { uri } from "../data";
 
 export const getData = async (params: any) => {
-  let res;
-  if (params.data && params.limit) {
-    res = await fetch(`${uri}/${params.route}/${params.limit}&${params.data}`);
-  } else if (params.data) {
-    res = await fetch(`${uri}/${params.route}/${params.data}`);
-  } else {
-    res = await fetch(`${uri}/${params.route}`);
+  try {
+    const res = await axios.get(`${uri}/${params.route}`, {
+      params: {
+        data: params.data,
+        lat: params.lat,
+        lon: params.lon,
+        limit: params.limit,
+        lon_min: params.lon_min,
+        lon_max: params.lon_max,
+        lat_min: params.lat_min,
+        lat_max: params.lat_max,
+        filter: params.filter,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.log(error);
   }
-  if (res.status !== 200) {
-    throw Error("problem getting data");
-  }
-  const body = await res.json();
-  return body;
 };

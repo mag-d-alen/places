@@ -22,6 +22,7 @@ export type InitialStateType = {
   limit: number;
   map: any;
   weather: WeatherType;
+  filter: string;
 };
 export type WeatherType = {
   apparentTemperature: number;

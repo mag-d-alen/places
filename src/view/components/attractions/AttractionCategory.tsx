@@ -11,7 +11,8 @@ export const AttractionCategory: React.FC<{ category: string }> = ({
   const dispatch = useDispatch();
 
   return (
-    <AttractionCategoryContainer onClick={()=> dispatch(setCategoryFilter(category))}>
+    <AttractionCategoryContainer
+      onClick={() => dispatch(setCategoryFilter(category))}>
       {capitalizeName(processCategoryName(category))}{" "}
     </AttractionCategoryContainer>
   );

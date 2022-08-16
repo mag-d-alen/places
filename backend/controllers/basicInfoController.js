@@ -1,8 +1,7 @@
 const { fetchPlace } = require("../lib/functions.js");
 
 const basicInfoController = async (req, res) => {
-  
-  const placeName = req.params.name;
+  const placeName = req.query.data;
   try {
     const placeData = await fetchPlace(placeName);
     return res.send(placeData);

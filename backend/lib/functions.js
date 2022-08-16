@@ -24,10 +24,11 @@ const fetchAttractions = async ({
   lon_max,
   lat_min,
   lat_max,
+  filter,
 }) => {
   try {
     const attractions = await axios.get(
-      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&limit=${limit}&kinds=interesting_places&apikey=${API_KEY}`,
+      `${placesUri}bbox?lon_min=${lon_min}&lon_max=${lon_max}&lat_min=${lat_min}&lat_max=${lat_max}&limit=${limit}&kinds=${filter}&apikey=${API_KEY}`,
       { accept: "application/json" }
     );
     return attractions.data;
